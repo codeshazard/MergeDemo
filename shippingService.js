@@ -1,7 +1,10 @@
-const { calculateTotal } = require('./pricingService');
+const { calculateSubtotal } = require('./pricingService');
 
 function getShippingFee(cart) {
-  return calculateTotal(cart) >= 50 ? 0 : 10;
+  const subtotal = calculateSubtotal(cart);
+  if (subtotal >= 100) return 0;
+  if (subtotal >= 50) return 5;
+  return 15;
 }
 
 module.exports = { getShippingFee };
